@@ -245,6 +245,7 @@ Content-Type: application/json
   <script src="js/hal/views/response_body.js"></script>
 
   <script src="js/hal/views/documentation.js"></script>
+  <script src="js/hotfix.js"></script>
 
   <script>
     var browser = new HAL.Browser({
@@ -253,8 +254,6 @@ Content-Type: application/json
     });
     Backbone.history.start();
 
-    //add by cmayr and dantlinger manually -> bad HOTFIX
-    $.ajaxSetup({ beforeSend: function (xhr) { xhr.setRequestHeader("Authorization",$('.request-headers textarea').val()); } });
-    console.log("Add custom Auth stuff to each ajax call -> HOTFIX");
+    
   </script>
 </body>
