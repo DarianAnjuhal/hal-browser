@@ -11,6 +11,10 @@
       return str.match(urlRegex) || HAL.isCurie(str);
     },
     isCurie: function(string) {
+      if(string !== 'self' && string !== 'profile' && string !== 'first' && string !== 'next' && string !== 'last') {
+        return true;
+      }
+
       var isCurie = false;
       var curieParts = string.split(':');
       var curies = HAL.currentDocument._links.curies;
@@ -38,11 +42,14 @@
        var uri = new URI(rel)
        var norm = uri.absoluteTo(cur);
 
-       return norm
+       return norm;
 	},
     buildUrl: function(rel) {
       if (!HAL.currentDocument._links) {
         return rel;
+      }
+      if (!rel.match(urlRegex) && HAL.isCurie(rel)) {
+        return 'docs/' + rel;
       }
       if (!rel.match(urlRegex) && HAL.isCurie(rel) && HAL.currentDocument._links.curies) {
         var parts = rel.split(':');

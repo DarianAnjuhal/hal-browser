@@ -37,12 +37,13 @@
 	</style>
 	<script src="vendor/js/jquery-1.10.2.min.js"></script>
 	<script src="vendor/js/bootstrap.js"></script>
+	<script src="options.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#form-signin').submit(function(event){
 				event.preventDefault();
 				$.ajax({
-					url : '../oauth/token',
+					url : options.entryPoint + '/oauth/token',
 					type : 'POST',
 					async : false,
 					data : 'password='+$("#password").val()+'&username='+$("#username").val()+'&grant_type=password',
@@ -54,7 +55,7 @@
 					dataType : 'json',
 					success : function(data) {
 						document.cookie = "MyHalBrowserToken=" + data.access_token;
-						window.location.href = 'browser.html'
+						window.location.href = 'browser.html?token=' + data.access_token;
 					}
 				});
 			});
@@ -65,8 +66,8 @@
 	<div class="container">
 		<form class="form-signin" id="form-signin">
 			<h3 class="form-signin-heading">HAL Browser - OAuth2</h3>
-			<input type="text" class="input-block-level" placeholder="Client ID" id="clientid">
-			<input type="text" class="input-block-level" placeholder="Client Secret" id="clientsecret">
+			<input type="hidden" class="input-block-level" placeholder="Client ID" value="pia" id="clientid">
+			<input type="hidden" class="input-block-level" placeholder="Client Secret" value="alphaport" id="clientsecret">
 			<input type="text" class="input-block-level" placeholder="Username" id="username">
 			<input type="password" class="input-block-level" placeholder="Password" id="password">
 			<button type="submit" class="btn btn-large btn-primary" id="login">Sign in</button>
