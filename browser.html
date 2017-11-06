@@ -293,10 +293,7 @@
   <script src="options.js"></script>
 
   <script>
-    let entryPoint = options.entryPoint;
-    if(window.location.hash !== '') {
-      entryPoint = window.location.hash;
-    }
+    const entryPoint = options.entryPoint;
     var browser = new HAL.Browser({
         container: $('#browser'),
         entryPoint: entryPoint
