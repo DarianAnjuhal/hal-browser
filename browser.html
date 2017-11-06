@@ -293,9 +293,13 @@
   <script src="options.js"></script>
 
   <script>
+    let entryPoint = options.entryPoint;
+    if(window.location.hash !== '') {
+      entryPoint = window.location.hash;
+    }
     var browser = new HAL.Browser({
         container: $('#browser'),
-        entryPoint: options.entryPoint
+        entryPoint: entryPoint
       });
     Backbone.history.start();
   </script>
