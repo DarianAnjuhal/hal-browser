@@ -43,7 +43,7 @@
 			$('#form-signin').submit(function(event){
 				event.preventDefault();
 				$.ajax({
-					url : options.entryPoint + '/oauth/token',
+					url : options.entryPoint + 'oauth/token',
 					type : 'POST',
 					async : false,
 					data : 'password='+$("#password").val()+'&username='+$("#username").val()+'&grant_type=password',
